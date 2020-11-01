@@ -34,8 +34,8 @@ Document photo perspective transformation correction，利用unet网络进行 �
 - coming soon
 
 ## 其他
--代码还在优化中，效果与效率都在持续更新....
--更多OCR，文档解析，物体检测，跟踪等分享，尽在微信公众号 hulugeAI 
+- 代码还在优化中，效果与效率都在持续更新....
+- 更多OCR，文档解析，物体检测，跟踪等分享，尽在微信公众号 hulugeAI 
 
 
 
