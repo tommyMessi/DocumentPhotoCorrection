@@ -19,7 +19,7 @@ tf.app.flags.DEFINE_integer('save_summary_steps', 100, '')
 tf.app.flags.DEFINE_string('pretrained_model_path', '/home/huluwa/Etranform/model/resnet_v1_50.ckpt', '')
 
 import model
-import data
+import data as datav
 
 FLAGS = tf.app.flags.FLAGS
 
@@ -231,7 +231,7 @@ def main(argv=None):
             if FLAGS.pretrained_model_path is not None:
                 variable_restore_op(sess)
 
-        data_generator = data.get_batch(num_workers=FLAGS.num_readers,
+        data_generator = datav.get_batch(num_workers=FLAGS.num_readers,
                                          input_size=512,
                                          batch_size=FLAGS.batch_size_per_gpu * len(gpus))
 
