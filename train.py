@@ -29,9 +29,9 @@ gpus = list(range(len(FLAGS.gpu_list.split(','))))
 def tower_loss(images, score_maps, geo_maps, training_masks, vertex_score_maps, vertex_geo_maps, vertex_training_masks, vertex_1_score_maps, vertex_1_geo_maps, vertex_1_training_masks, vertex_2_score_maps, vertex_2_geo_maps, vertex_2_training_masks, vertex_3_score_maps, vertex_3_geo_maps, vertex_3_training_masks, vertex_4_score_maps, vertex_4_geo_maps, vertex_4_training_masks, reuse_variables=None):
     # Build inference graph
     with tf.variable_scope(tf.get_variable_scope(), reuse=reuse_variables):
-        f_score, f_geometry, vertex_f_score, vertex_f_geometry, vertex_1_f_score, vertex_1_f_geometry, vertex_2_f_score, vertex_2_f_geometry, vertex_3_f_score, vertex_3_f_geometry, vertex_4_f_score, vertex_4_f_geometry = model_4v.model(images, is_training=True)
+        f_score, f_geometry, vertex_f_score, vertex_f_geometry, vertex_1_f_score, vertex_1_f_geometry, vertex_2_f_score, vertex_2_f_geometry, vertex_3_f_score, vertex_3_f_geometry, vertex_4_f_score, vertex_4_f_geometry = model.model(images, is_training=True)
 
-    model_loss = model_4v.loss(score_maps, f_score,
+    model_loss = model.loss(score_maps, f_score,
                             geo_maps, f_geometry,
                             training_masks,
                                vertex_score_maps, vertex_f_score, vertex_geo_maps, vertex_f_geometry,
@@ -231,7 +231,7 @@ def main(argv=None):
             if FLAGS.pretrained_model_path is not None:
                 variable_restore_op(sess)
 
-        data_generator = icdar_4v.get_batch(num_workers=FLAGS.num_readers,
+        data_generator = data.get_batch(num_workers=FLAGS.num_readers,
                                          input_size=512,
                                          batch_size=FLAGS.batch_size_per_gpu * len(gpus))
 
